@@ -14,3 +14,13 @@ FROM
   GROUP BY 1
 ) a
 GROUP BY 1;
+
+--Vamos criar uma coluna que retorna se o cliente já comprou maçã ou laranjas, independente da data da compra
+SELECT customer_id, 
+max(case
+      when fruit = 'apple' then 1 else 0
+    end) as bought_apple
+,max(case
+      when fruit = 'orange' then 1 else 0
+    end) as bought_oranges
+FROM tabela
